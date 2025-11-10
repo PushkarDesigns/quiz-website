@@ -1,10 +1,18 @@
 import React from 'react'
 import QuizStart from './QuizStart'
+import ProgressBar from './ProgressBar'
+import Timer from './Timer'
+import Question from './Question'
+import Result from './Result'
 
 const Quiz = () => {
     return (
         <>
-            <QuizStart />
+            <Result />
+            {/* <Question /> */}
+            {/* <Timer /> */}
+            {/* <ProgressBar /> */}
+            {/* <QuizStart /> */}
             {/* <div className="min-h-screen bg-gradient-to-be from-blue-50 via-white to-purple-50 p-4">
 
                 <div className="max-w-4xl mx-auto mb-4">
