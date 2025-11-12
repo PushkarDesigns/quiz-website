@@ -1,5 +1,4 @@
 import { Award, Clock, RefreshCw, Target, Trophy } from 'lucide-react';
-import React from 'react';
 
 function Results() {
     return (
