@@ -12,7 +12,6 @@ const Question = () => {
                         {/* Display Dynamic Answer */}
                         <div className="grid gap-4"></div>
 
-
                     </div>
 
                     {/* Show Explanation */}
