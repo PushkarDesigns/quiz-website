@@ -1,10 +1,16 @@
 import React from 'react'
 import Quiz from './components/Quiz'
+import { Provider } from 'react-redux'
+import { store } from './store/store'
 
 const App = () => {
   return (
     <>
-    <Quiz />
+    <div className="">
+      <Provider store={store}>
+        <Quiz />
+      </Provider>
+    </div>
     </>
   )
 }
