@@ -10,8 +10,8 @@ const Question = () => {
                         <h2>Question</h2>
 
                         {/* Display Dynamic Answer */}
+                        
                         <div className="grid gap-4"></div>
-
                     </div>
 
                     {/* Show Explanation */}
