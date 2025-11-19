@@ -53,7 +53,6 @@ const Quiz = () => {
         )
     }
 
-
     return (
         <>
             {/* <Result /> */}
