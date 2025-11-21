@@ -14,6 +14,7 @@ const QuizStart = () => {
                         <p className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">Test your knowledge of React, JavaScript, and web development.Answer multiple choice questions and see how well you know the fundamentals!
                         </p>
                     </div>
+                    
                     {/* Cards */}
                     <div className="grid md:grid-cols-3 gap-6 mb-8">
                         <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-xl">
