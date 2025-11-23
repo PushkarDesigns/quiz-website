@@ -16,12 +16,20 @@ const quizSlice = createSlice({
   initialState,
   reducers: {
     setQuestions: (state, action) => {
-    state.questions = action.payload;
+      state.questions = action.payload;
+    },
+    startQuiz: (state) => {
+      state.currentQuestionIndex = 0;
+      state.answers = [];
+      state.isQuizCompleted = false;
+      state.score = 0;
+      state.timeLeft = 300;
+      (state.isTimerActive = true), (state.showExplanation = false);
+    }
   },
-},
 });
 
-export const { setQuestions } = quizSlice.actions;
+export const { setQuestions, startQuiz } = quizSlice.actions;
 
 export default quizSlice.reducer;
 // export const {} = quizSlice.actions;

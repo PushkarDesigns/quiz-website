@@ -26,7 +26,7 @@ const Quiz = () => {
     } = useSelector((state) => state.quiz);
 
     // Loading Quiz
-    if (questions.length) {
+    if (questions.length === 0) {
         return (
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center">
                 <div className="text-center">
@@ -46,6 +46,7 @@ const Quiz = () => {
     }
 
     if (!isTimerActive && answers.length === 0) {
+        console.log(questions)
         return (
             <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-8 px-4">
                 <QuizStart />
