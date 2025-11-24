@@ -1,7 +1,14 @@
 import React from 'react'
 import { BookOpen, Clock, Play, Trophy } from 'lucide-react'
+import { Dispatch } from 'react-redux'
+import { startQuiz } from '../store/quizSlice'
 
 const QuizStart = () => {
+    
+    const handleStartQuiz = () => {
+        Dispatch (startQuiz());
+    }
+
     return (
         <>
             <div className="max-w-4xl mx-auto">
@@ -74,7 +81,7 @@ const QuizStart = () => {
                             </ul>
                         </div>
                     </div>
-                    <button className="inline-flex items-center space-x-3 py-4 px-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-60 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-1g font-semibold text-1g cursor-pointer">
+                    <button className="inline-flex items-center space-x-3 py-4 px-8 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl hover:from-blue-60 hover:to-purple-700 transform hover:scale-105 transition-all duration-200 shadow-1g font-semibold text-1g cursor-pointer" onClick={handleStartQuiz}>
                         <Play size={24} />
                         <span className=''>Start Quiz</span>
                     </button>
