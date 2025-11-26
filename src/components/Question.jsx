@@ -1,16 +1,33 @@
 import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
 import React from 'react'
+import { useSelector } from "react-redux";
 
 const Question = () => {
+    const { questions, currentQuestionIndex, answers, showExplanation } = useSelector((state) => state.quiz);
+
+    const currentQuestion = questions[currentQuestionIndex];
+
+
     return (
         <>
             <div className="max-w-4xl mx-auto">
                 <div className="bg-white rounded-2xl shadow-xl p-8 transition-all duration-300 hover:shadow-2xl">
                     <div className="mb-8">
-                        <h2>Question</h2>
+                        <h2 className='text-2xl font-bold text-gray-800 mb-6 leading-relaxed'>{currentQuestion.question}</h2>
 
                         {/* Display Dynamic Answer */}
-                        <div className="grid gap-4"></div>
+                        <div className="grid gap-4">
+                            {currentQuestion.options.map((option, index) => {
+                                return (
+                                    <button key={index}>
+                                        <div className="flex items-center justify-between">
+                                            <span>{option}</span>
+                                        </div>
+                                    </button>
+                                );
+
+                            })}
+                        </div>
                     </div>
 
                     {/* Show Explanation */}

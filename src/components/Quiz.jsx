@@ -18,12 +18,7 @@ const Quiz = () => {
     }, [dispatch]);
 
     const {
-        questions,
-        currentQuestionIndex,
-        isQuizCompleted,
-        isTimerActive,
-        answers,
-    } = useSelector((state) => state.quiz);
+        questions, currentQuestionIndex, isQuizCompleted, isTimerActive, answers, } = useSelector((state) => state.quiz);
 
     // Loading Quiz
     if (questions.length === 0) {
