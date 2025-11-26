@@ -15,8 +15,13 @@ function Timer() {
       interval = setInterval(() => {
         dispatch(decreamentTimer())
       }, 1000);
+      return () => {
+        if (interval) {
+          clearInterval(interval);
+        }
+      };
     }
-  }, []);
+  }, [dispatch, isTimerActive, timeLeft]);
 
   // Step 1:
   const formatTime = (seconds) => {
