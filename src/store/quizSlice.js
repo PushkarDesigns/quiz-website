@@ -25,11 +25,20 @@ const quizSlice = createSlice({
       state.score = 0;
       state.timeLeft = 300;
       (state.isTimerActive = true), (state.showExplanation = false);
-    }
+    },
+
+    decreamentTimer: (state) => {
+      if (state.timeLeft > 0 && state.isTimerActive) {
+        state.timeLeft -= 1;
+      } else if (state.timeLeft === 0) {
+        (state.isQuizCompleted = true), (state.isTimerActive = false);
+      }
+    },
+
   },
 });
 
-export const { setQuestions, startQuiz } = quizSlice.actions;
+export const { setQuestions, startQuiz, decreamentTimer } = quizSlice.actions;
 
 export default quizSlice.reducer;
 // export const {} = quizSlice.actions;
