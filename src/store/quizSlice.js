@@ -18,6 +18,7 @@ const quizSlice = createSlice({
     setQuestions: (state, action) => {
       state.questions = action.payload;
     },
+
     startQuiz: (state) => {
       state.currentQuestionIndex = 0;
       state.answers = [];
@@ -27,6 +28,35 @@ const quizSlice = createSlice({
       (state.isTimerActive = true), (state.showExplanation = false);
     },
 
+    answerQuestions: (state, action) => {
+      const currentQuestion = state.questions[state.currentQuestionIndex];
+      const isCorrect =
+        action.payload.selectedOption === currentQuestion.correctAnswer;
+
+      const answer = {
+        questionId: currentQuestion.id,
+        selectedOption: action.payload.selectedOption,
+        isCorrect,
+      };
+
+      state.answers.push(answer);
+
+      if (isCorrect) {
+        state.score += 1;
+      }
+      state.showExplanation = true;
+    },
+
+    nextQuestion: (state) => {
+      state.showExplanation = false;
+      if (state.currentQuestionIndex < state.questions.length - 1) {
+        state.currentQuestionIndex += 1;
+      } else {
+        state.isQuizCompleted = true;
+        state.isTimerActive = false;
+      }
+    },
+
     decreamentTimer: (state) => {
       if (state.timeLeft > 0 && state.isTimerActive) {
         state.timeLeft -= 1;
@@ -34,11 +64,11 @@ const quizSlice = createSlice({
         (state.isQuizCompleted = true), (state.isTimerActive = false);
       }
     },
-
   },
 });
 
-export const { setQuestions, startQuiz, decreamentTimer } = quizSlice.actions;
+export const { setQuestions, startQuiz, decreamentTimer, answerQuestions, nextQuestion } =
+  quizSlice.actions;
 
 export default quizSlice.reducer;
 // export const {} = quizSlice.actions;

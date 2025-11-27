@@ -1,12 +1,24 @@
-import { ArrowLeft, ArrowRight, CheckCircle } from 'lucide-react'
+import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react'
 import React from 'react'
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { answerQuestions } from '../store/quizSlice';
 
 const Question = () => {
+    const dispatch = useDispatch();
     const { questions, currentQuestionIndex, answers, showExplanation } = useSelector((state) => state.quiz);
 
     const currentQuestion = questions[currentQuestionIndex];
 
+    const currentAnswer = answers.find(
+        (answer) => answer.questionId === currentQuestion.id
+    );
+
+    // Answer Event
+    const handleOptionClick = (optionIndex) => {
+        if (!currentAnswer) {
+            dispatch(answerQuestions({ selectedOption: optionIndex }));
+        }
+    };
 
     return (
         <>
@@ -18,10 +30,37 @@ const Question = () => {
                         {/* Display Dynamic Answer */}
                         <div className="grid gap-4">
                             {currentQuestion.options.map((option, index) => {
+                                const isSelected = currentAnswer?.selectedOption === index;
+                                const isCorrect = index === currentQuestion.correctAnswer;
+                                const isWrong = isSelected && !isCorrect && showExplanation;
+
+                                let buttonClass = "w-full p-4 text-left rounded-xl border-1 border-gray-300 transition-all duration-200"
+
+                                if (showExplanation) {
+                                    if (isCorrect) {
+                                        buttonClass += ' border-green-500 bg-green-50 text-green-800';
+                                    } else if (isWrong) {
+                                        buttonClass += ' border-red-500 bg-red-50 text-red-800';
+                                    } else {
+                                        buttonClass += ' border-gray-200 bg-gray-50 text-gray-600';
+                                    }
+                                } else if (isSelected) {
+                                    buttonClass += ' border-blue-500 bg-blue-50 text-blue-600';
+                                } else {
+                                    buttonClass += ' border-gray-200 bg-white text-gray-700 hover:border-blue-300 hover:bg-blue-50 hover:shadow-md';
+                                }
+
                                 return (
-                                    <button key={index}>
+                                    <button key={index} className={buttonClass}
+                                    onClick={() => handleOptionClick(index)}>
                                         <div className="flex items-center justify-between">
-                                            <span>{option}</span>
+                                            <span className='text-lg'>{option}</span>
+                                            {showExplanation && isCorrect && (
+                                                <CheckCircle size={24} className="text-green-600" />
+                                            )}
+                                            {showExplanation && isWrong && (
+                                                <XCircle size={24} className="text-red-600" />
+                                            )}
                                         </div>
                                     </button>
                                 );
@@ -31,17 +70,18 @@ const Question = () => {
                     </div>
 
                     {/* Show Explanation */}
-                    <div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6 rounded-r-lg">
+                    {showExplanation && currentQuestion.explanation && (<div className="bg-blue-50 border-l-4 border-blue-400 p-4 mb-6 rounded-r-lg">
                         <div className="flex">
                             <div className="flex-shrink-0">
                                 <CheckCircle className='h-5 w-5 text-blue' />
                             </div>
                             <div className="ml-3">
                                 <p className="text-blue-800 font-medium">Explanation:</p>
-                                <p className="text-blue-700 mt-1">Current Question Explanation</p>
+                                <p className="text-blue-700 mt-1">{currentQuestion.explanation}</p>
                             </div>
                         </div>
                     </div>
+                    )}
 
                     {/* Displaying the Buttons */}
                     <div className="flex justify-between items-center">
