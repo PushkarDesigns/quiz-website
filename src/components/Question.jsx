@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react'
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { answerQuestions } from '../store/quizSlice';
+import { answerQuestions, nextQuestion } from '../store/quizSlice';
 
 const Question = () => {
     const dispatch = useDispatch();
@@ -19,6 +19,10 @@ const Question = () => {
             dispatch(answerQuestions({ selectedOption: optionIndex }));
         }
     };
+
+    const handleNext = () => {
+        dispatch(nextQuestion())
+    }
 
     return (
         <>
