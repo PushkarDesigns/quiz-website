@@ -57,6 +57,23 @@ const quizSlice = createSlice({
       }
     },
 
+    previousQuestion: (state) => {
+      if (state.currentQuestionIndex > 0) {
+        state.currentQuestionIndex -= 1;
+
+        // Remove the answer for the current question if going back
+        state.answers = state.answers.filter(
+          (answer) =>
+            answer.questionId !== state.questions[state.currentQuestionIndex].id
+        );
+
+        state.showExplanation = false;
+
+        // Recalculate score
+        state.score = state.answers.filter((answer) => answer.isCorrect).length;
+      }
+    },
+
     decreamentTimer: (state) => {
       if (state.timeLeft > 0 && state.isTimerActive) {
         state.timeLeft -= 1;
@@ -64,11 +81,27 @@ const quizSlice = createSlice({
         (state.isQuizCompleted = true), (state.isTimerActive = false);
       }
     },
+    resetQuiz: (state) => {
+      state.currentQuestionIndex = 0;
+      state.answers = [];
+      state.isQuizCompleted = false;
+      state.score = 0;
+      state.timeLeft = 300;
+      state.isTimerActive = false;
+      state.showExplanation = false;
+    },
   },
 });
 
-export const { setQuestions, startQuiz, decreamentTimer, answerQuestions, nextQuestion } =
-  quizSlice.actions;
+export const {
+  setQuestions,
+  startQuiz,
+  decreamentTimer,
+  answerQuestions,
+  nextQuestion,
+  previousQuestion,
+  resetQuiz,
+} = quizSlice.actions;
 
 export default quizSlice.reducer;
 // export const {} = quizSlice.actions;

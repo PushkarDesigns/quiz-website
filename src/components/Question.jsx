@@ -1,7 +1,7 @@
 import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react'
 import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
-import { answerQuestions, nextQuestion } from '../store/quizSlice';
+import { answerQuestions, nextQuestion, previousQuestion } from '../store/quizSlice';
 
 const Question = () => {
     const dispatch = useDispatch();
@@ -21,7 +21,11 @@ const Question = () => {
     };
 
     const handleNext = () => {
-        dispatch(nextQuestion())
+        dispatch(nextQuestion());
+    }
+
+    const handlePrevious = () => {
+        dispatch(previousQuestion());
     }
 
     return (
@@ -56,7 +60,7 @@ const Question = () => {
 
                                 return (
                                     <button key={index} className={buttonClass}
-                                    onClick={() => handleOptionClick(index)}>
+                                        onClick={() => handleOptionClick(index)}>
                                         <div className="flex items-center justify-between">
                                             <span className='text-lg'>{option}</span>
                                             {showExplanation && isCorrect && (
@@ -89,15 +93,15 @@ const Question = () => {
 
                     {/* Displaying the Buttons */}
                     <div className="flex justify-between items-center">
-                        <button className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-5 disabled:cursor-not-allowed transition-all duration-200">
+                        <button className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-5 disabled:cursor-not-allowed transition-all duration-200" onClick={handlePrevious}>
                             <ArrowLeft size={20} />
                             <span>Previous</span>
                         </button>
-                        <button className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-5 disabled:cursor-not-allowed transition-all duration-200">
+                        {showExplanation && (<button className="flex items-center space-x-2 px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 disabled:opacity-5 disabled:cursor-not-allowed transition-all duration-200" onClick={handleNext}>
                             <ArrowRight size={20} />
-                            <span>Next</span>
-                        </button>
-                    </div>
+                            <span>{currentQuestionIndex === questions.length - 1 ? 'Finish Quiz' : 'Next Quiz'}</span>
+                        </button>)}
+                    </div> 
                 </div>
             </div>
         </>
