@@ -4,7 +4,6 @@ import ProgressBar from './ProgressBar'
 import Timer from './Timer'
 import Question from './Question'
 import { useDispatch, useSelector } from "react-redux";
-import Result from './Result'
 import Results from './Result'
 import { SampleQuestions } from '../data/questions'
 import { setQuestions } from '../store/quizSlice'
