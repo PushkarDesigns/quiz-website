@@ -33,8 +33,9 @@ const Quiz = () => {
 
     if (isQuizCompleted) {
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
-                <Results />
+            // <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
+            <div className="min-h-screen py-8 px-4">
+            <Results />
             </div>
         )
     }
@@ -42,7 +43,8 @@ const Quiz = () => {
     if (!isTimerActive && answers.length === 0) {
         console.log(questions)
         return (
-            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-8 px-4">
+            // <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-8 px-4">
+            <div className="min-h-screen flex items-center justify-center py-8 px-4">
                 <QuizStart />
             </div>
         )
@@ -55,7 +57,8 @@ const Quiz = () => {
             {/* <Timer /> */}
             {/* <ProgressBar /> */}
             {/* <QuizStart /> */}
-            <div className="min-h-screen bg-gradient-to-be from-blue-50 via-white to-purple-50 p-4">
+            {/* <div className="min-h-screen bg-gradient-to-be from-blue-50 via-white to-purple-50 p-4"> */}
+            <div className="min-h-screen p-4">
                 <div className="max-w-4xl mx-auto mb-4">
                     <div className="bg-white rounded-xl shadow-lg p-4">
                         <div className="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
