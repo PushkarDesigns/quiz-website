@@ -51,32 +51,32 @@ export const SampleQuestions = [
     correctAnswer: 1,
     explanation: "Keys help React identify which items in a list have changed or been added/removed."
   },
-  // {
-  //   id: 6,
-  //   question: "Which method is used to update state in a class component?",
-  //   options: ["setState", "updateState", "changeState", "refreshState"],
-  //   correctAnswer: 0,
-  //   explanation: "setState is the built-in method to update component state in class components."
-  // },
-  // {
-  //   id: 7,
-  //   question: "What is a React component?",
-  //   options: [
-  //     "A part of the DOM tree",
-  //     "A reusable piece of UI",
-  //     "A Java class",
-  //     "A browser API"
-  //   ],
-  //   correctAnswer: 1,
-  //   explanation: "Components are reusable blocks that define how UI should appear."
-  // },
-  // {
-  //   id: 8,
-  //   question: "Which hook returns memoized values?",
-  //   options: ["useEffect", "useRef", "useMemo", "useLayoutEffect"],
-  //   correctAnswer: 2,
-  //   explanation: "useMemo returns a memoized value to avoid expensive recalculations."
-  // },
+  {
+    id: 6,
+    question: "Which method is used to update state in a class component?",
+    options: ["setState", "updateState", "changeState", "refreshState"],
+    correctAnswer: 0,
+    explanation: "setState is the built-in method to update component state in class components."
+  },
+  {
+    id: 7,
+    question: "What is a React component?",
+    options: [
+      "A part of the DOM tree",
+      "A reusable piece of UI",
+      "A Java class",
+      "A browser API"
+    ],
+    correctAnswer: 1,
+    explanation: "Components are reusable blocks that define how UI should appear."
+  },
+  {
+    id: 8,
+    question: "Which hook returns memoized values?",
+    options: ["useEffect", "useRef", "useMemo", "useLayoutEffect"],
+    correctAnswer: 2,
+    explanation: "useMemo returns a memoized value to avoid expensive recalculations."
+  },
   // {
   //   id: 9,
   //   question: "What is React?",

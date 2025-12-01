@@ -1,5 +1,4 @@
 import { ArrowLeft, ArrowRight, CheckCircle, XCircle } from 'lucide-react'
-import React from 'react'
 import { useDispatch, useSelector } from "react-redux";
 import { answerQuestions, nextQuestion, previousQuestion } from '../store/quizSlice';
 
@@ -108,4 +107,4 @@ const Question = () => {
     )
 }
 
-export default Question
+export default Question;
